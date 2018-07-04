@@ -1,0 +1,9 @@
+on run {input, parameters}
+	try
+		do shell script "/usr/local/bin/openwinfs '" & input & "' '$USER' '$PASS' 2> /tmp/openwinfs.log"
+	on error
+		set errMsg to do shell script "cat /tmp/openwinfs.log && rm -f /tmp/openwinfs.log"
+		display alert "Error:
+" & errMsg
+	end try
+end run
